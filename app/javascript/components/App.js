@@ -12,6 +12,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
+import './App.css';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/apartmentedit" component={ApartmentEdit} />
             <Route component={NotFound}/>
           </Switch>
+          <Footer />
         </Router>
         
         

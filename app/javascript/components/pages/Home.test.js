@@ -14,10 +14,28 @@ import Home from './Home'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe("When Home renders", () => {
-  it("displays a heading", () => {
+  it("displays a larger heading", () => {
+    const home = shallow(<Home />)
+    const homeHeading = home.find("h2")
+    // console.log("HOME", homeHeading.debug());
+    expect(homeHeading.text()).toEqual("Find your Perfect Place")
+  })
+  it("displays a smaller heading", () => {
     const home = shallow(<Home />)
     const homeHeading = home.find("h3")
-    console.log("HOME", homeHeading.debug());
-    expect(homeHeading.text()).toEqual("This Should Fail")
+    // console.log("HOME", homeHeading.debug());
+    expect(homeHeading.text()).toEqual("Overview")
+  })
+  it("displays a paragraph of information about the app", () => {
+    const home = shallow(<Home />)
+    const homeHeading = home.find("p")
+    // console.log("HOME", homeHeading.debug());
+    expect(homeHeading.length).toEqual(1)
+  })
+  it("displays a carousel of images of apartments", () => {
+    const home = shallow(<Home />)
+    const homeHeading = home.find("UncontrolledCarousel")
+    // console.log("HOME", homeHeading.debug());
+    expect(homeHeading.length).toEqual(1)
   })
 })

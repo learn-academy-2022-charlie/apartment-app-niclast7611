@@ -17,6 +17,11 @@ describe("When Header renders", () => {
   it("displays a heading", () => {
     const header = shallow(<Header />)
     const headerHeading = header.find("h1")
-    expect(headerHeading.text()).toEqual("This should fail")
+    expect(headerHeading.text()).toEqual("Apartment App")
+  })
+  it("displays 5 links to navigate app", () => {
+    const header = shallow(<Header />)
+    const headerHeading = header.find("a")
+    expect(headerHeading.length).toEqual(5)
   })
 })

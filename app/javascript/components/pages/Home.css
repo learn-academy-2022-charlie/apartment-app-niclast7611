@@ -1,0 +1,16 @@
+
+.carousel{
+    height: 500px;
+    width: 600px;
+    margin: 60px auto;
+}
+
+#home-container{
+    text-align: center;
+}
+
+h2{
+    font-size: 40px;
+    margin: 20px 0;
+}
+
