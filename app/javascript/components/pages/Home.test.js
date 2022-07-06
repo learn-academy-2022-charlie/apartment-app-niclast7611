@@ -20,12 +20,6 @@ describe("When Home renders", () => {
     // console.log("HOME", homeHeading.debug());
     expect(homeHeading.text()).toEqual("Find your Perfect Place")
   })
-  it("displays a smaller heading", () => {
-    const home = shallow(<Home />)
-    const homeHeading = home.find("h3")
-    // console.log("HOME", homeHeading.debug());
-    expect(homeHeading.text()).toEqual("Overview")
-  })
   it("displays a paragraph of information about the app", () => {
     const home = shallow(<Home />)
     const homeHeading = home.find("p")

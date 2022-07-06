@@ -12,7 +12,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import './App.css';
+import './App.scss';
 
 class App extends Component {
   render() {
