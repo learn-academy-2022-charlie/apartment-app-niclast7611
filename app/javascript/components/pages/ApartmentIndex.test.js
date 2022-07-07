@@ -14,14 +14,34 @@ import ApartmentIndex from './ApartmentIndex'
 Enzyme.configure({ adapter: new Adapter() })
 
 describe("When ApartmentIndex renders", () => {
+  const props = {
+    apartments: [
+      {
+        id: 1, 
+        street: "23 snugglebunny lane", 
+        city: "Inglewood", 
+        state: "CA", 
+        manager: "Doctor Doom", 
+        email: "doom@snugglebunny.com", 
+        price: "5 hugs per month", 
+        bedrooms: 2, 
+        bathrooms: 2, 
+        pets: "of course", 
+        image: "www.urlhelper.com", 
+        user_id: 2 }
+    ]
+  }
+  let apartmentIndexRender
+  beforeEach(() => {
+    apartmentIndexRender = shallow(<ApartmentIndex {...props} />)
+  })
+  
   it("displays a heading", () => {
-    const apartmentIndex = shallow(<ApartmentIndex />)
-    const apartmentIndexHeading = apartmentIndex.find("h2")
+    const apartmentIndexHeading = apartmentIndexRender.find("h2")
     expect(apartmentIndexHeading.text()).toEqual("Apartment Listings")
   })
   it("displays a card for each unique listing", () => {
-    const apartmentIndex = shallow(<ApartmentIndex />)
-    const apartmentIndexHeading = apartmentIndex.find("Card")
-    expect(apartmentIndexHeading.length).toEqual(1)
+    const apartmentIndexCard = apartmentIndexRender.find("Card")
+    expect(apartmentIndexCard.length).toEqual(1)
   })
 })
