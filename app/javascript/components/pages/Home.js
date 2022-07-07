@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { UncontrolledCarousel } from 'reactstrap'
-import './Home.scss';
+
 
 export default class Home extends Component {
   render() {

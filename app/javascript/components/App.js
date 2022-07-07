@@ -12,27 +12,44 @@ import {
   Route,
   Switch
 } from 'react-router-dom'
-import './App.scss';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      apartments: []
+    }
+  }
+  componentDidMount() {
+    this.readApartment()
+  }
+  readApartment = () => {
+    fetch('/apartments')
+      .then(r => r.json())
+      .then(payload => this.setState({ apartments: payload }))
+      .catch(errors => console.log(errors))
+  }
   render() {
+    console.log('apartments', this.state.apartments)
     return (
-      
-        <Router>
-          <Header {...this.props} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/apartmentindex" component={ApartmentIndex} />
-            <Route path="/apartmentshow" component={ApartmentShow} />
-            <Route path="/apartmentnew" component={ApartmentNew} />
-            <Route path="/apartmentedit" component={ApartmentEdit} />
-            <Route component={NotFound}/>
-          </Switch>
-          <Footer />
-        </Router>
-        
-        
-  
+
+      <Router>
+        <Header {...this.props} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/apartmentindex" render={props => <ApartmentIndex apartments={this.state.apartments} />} />
+          <Route path="/apartmentshow/:id" render={(props) => {
+            let id = props.match.params.id
+            let apartment = this.state.apartments.find(apartment => apartment.id === +id)
+            return <ApartmentShow apartment={apartment} />
+          }} />
+          <Route path="/apartmentnew" component={ApartmentNew} />
+          <Route path="/apartmentedit" component={ApartmentEdit} />
+          <Route component={NotFound} />
+        </Switch>
+        <Footer />
+      </Router>
+
     )
   }
 }
