@@ -16,7 +16,12 @@ Enzyme.configure({ adapter: new Adapter() })
 describe("When ApartmentIndex renders", () => {
   it("displays a heading", () => {
     const apartmentIndex = shallow(<ApartmentIndex />)
-    const apartmentIndexHeading = apartmentIndex.find("h3")
-    expect(apartmentIndexHeading.text()).toEqual("This Should Fail")
+    const apartmentIndexHeading = apartmentIndex.find("h2")
+    expect(apartmentIndexHeading.text()).toEqual("Apartment Listings")
+  })
+  it("displays a card for each unique listing", () => {
+    const apartmentIndex = shallow(<ApartmentIndex />)
+    const apartmentIndexHeading = apartmentIndex.find("Card")
+    expect(apartmentIndexHeading.length).toEqual(1)
   })
 })
