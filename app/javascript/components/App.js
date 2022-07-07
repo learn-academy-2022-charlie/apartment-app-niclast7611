@@ -14,48 +14,41 @@ import {
 } from 'react-router-dom'
 
 class App extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
-      this.state={
-        apartments: []
+    this.state = {
+      apartments: []
     }
   }
-  componentDidMount(){
+  componentDidMount() {
     this.readApartment()
   }
   readApartment = () => {
     fetch('/apartments')
-    .then(r => r.json())
-    .then(payload => this.setState({apartments: payload}))
-    .catch(errors => console.log(errors))
+      .then(r => r.json())
+      .then(payload => this.setState({ apartments: payload }))
+      .catch(errors => console.log(errors))
   }
   render() {
     console.log('apartments', this.state.apartments)
     return (
-      
-        <Router>
-          <Header {...this.props} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/apartmentindex" render={props => <ApartmentIndex apartments={this.state.apartments}/> } />
-            <Route path="/apartmentshow/:id" render={(props) => {
-              let id = props.match.params.id
-              let apartment = this.state.apartments.find(apartment => apartment.id === +id)
-              return <ApartmentShow apartment={apartment}/>
-            }} />
-            <Route path="/apartmentnew" component={ApartmentNew} />
-            <Route path="/apartmentedit" component={ApartmentEdit} />
-            <Route component={NotFound}/>
-          </Switch>
-          <Footer />
-        </Router>
-        
-        
-        // <Route path="/catshow/:id" render={(props) => {
-        //   let id = props.match.params.id
-        //   let cat = this.state.cats.find(cat => cat.id === +id)
-        //   return <CatShow cat={cat} deletePet={this.deletePet} />
-        // }} />
+
+      <Router>
+        <Header {...this.props} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/apartmentindex" render={props => <ApartmentIndex apartments={this.state.apartments} />} />
+          <Route path="/apartmentshow/:id" render={(props) => {
+            let id = props.match.params.id
+            let apartment = this.state.apartments.find(apartment => apartment.id === +id)
+            return <ApartmentShow apartment={apartment} />
+          }} />
+          <Route path="/apartmentnew" component={ApartmentNew} />
+          <Route path="/apartmentedit" component={ApartmentEdit} />
+          <Route component={NotFound} />
+        </Switch>
+        <Footer />
+      </Router>
 
     )
   }
